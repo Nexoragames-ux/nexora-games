@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nexora Games — play free browser games.">
+  <title>Nexora Games | Play Beyond Limits</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">N</span><span>NEXORA<span class="muted"> GAMES</span></span></a>
+  <nav><a href="#games">Games</a><a href="#categories">Categories</a><a href="#about">About</a></nav>
+  <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+  <a class="top-cta" href="#games">Play now <span>↗</span></a>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="pulse"></span> YOUR NEXT GAME STARTS HERE</div>
+      <h1>PLAY BEYOND<br><span>LIMITS.</span></h1>
+      <p>Quick challenges. Big adventures. Zero downloads. Find your next favourite game and play right in your browser.</p>
+      <div class="hero-actions"><a class="btn primary" href="#games">Explore games <span>→</span></a><a class="btn secondary" href="#categories">Browse categories</a></div>
+      <div class="hero-stats"><div><strong>10</strong><small>MINI GAMES</small></div><div><strong>100%</strong><small>BROWSER PLAY</small></div><div><strong>0</strong><small>DOWNLOADS</small></div></div>
+    </div>
+    <div class="hero-art" aria-label="Decorative gaming illustration">
+      <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+      <div class="game-chip chip-one">✦ ARCADE</div><div class="game-chip chip-two">LEVEL UP</div>
+      <div class="controller"><div class="dpad"><i></i><b></b></div><div class="buttons"><i></i><b></b></div><div class="controller-line"></div></div>
+      <div class="hero-glow"></div>
+      <div class="hero-caption"><span class="live-dot"></span> READY WHEN YOU ARE</div>
+    </div>
+  </section>
+
+  <section class="section" id="categories">
+    <div class="section-head"><div><div class="eyebrow">PICK YOUR MOOD</div><h2>Explore <span>categories</span></h2></div><p>There's always a new challenge waiting.</p></div>
+    <div class="category-grid">
+      <button class="category-card active" data-filter="all"><span>✦</span><b>All games</b><small>Everything in one place</small></button>
+      <button class="category-card" data-filter="puzzle"><span>🧩</span><b>Puzzle</b><small>Think it through</small></button>
+      <button class="category-card" data-filter="arcade"><span>⚡</span><b>Arcade</b><small>Fast reflexes</small></button>
+      <button class="category-card" data-filter="strategy"><span>♟</span><b>Strategy</b><small>Make your move</small></button>
+    </div>
+  </section>
+
+  <section class="section games-section" id="games">
+    <div class="section-head"><div><div class="eyebrow">THE GAME LIBRARY</div><h2>Find your <span>next game</span></h2></div><div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search games..." aria-label="Search games"></div></div>
+    <div class="game-grid" id="gameGrid"></div>
+    <p class="empty-state" id="emptyState" hidden>No games found. Try another search.</p>
+  </section>
+
+  <section class="join-banner" id="about">
+    <div><div class="eyebrow">THE NEXORA EXPERIENCE</div><h2>Small breaks.<br><span>Epic moments.</span></h2><p>Made for curious minds, quick thinkers and anyone who loves to play.</p></div>
+    <a class="btn primary" href="#games">Find a game <span>→</span></a>
+  </section>
+</main>
+
+<footer><a class="brand" href="#"><span class="brand-mark">N</span><span>NEXORA<span class="muted"> GAMES</span></span></a><p>© <span id="year"></span> Nexora Games. Built for the love of play.</p><span class="footer-note">PLAY FAIR. HAVE FUN.</span></footer>
+
+<div class="modal" id="gameModal" aria-hidden="true">
+  <div class="modal-panel"><button class="close-btn" id="closeModal" aria-label="Close game">×</button><div class="modal-kicker" id="gameCategory">MINI GAME</div><h2 id="gameTitle">Game</h2><div id="gameArea" class="game-area"></div><p class="game-help" id="gameHelp"></p></div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
