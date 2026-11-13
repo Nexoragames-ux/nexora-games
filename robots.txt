@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nexoragames-ux.github.io/nexora-games/sitemap.xml
