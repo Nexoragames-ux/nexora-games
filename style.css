@@ -46,3 +46,9 @@
 .rps-reveal{animation:rpsPop .32s ease-out}
 @keyframes rpsPop{0%{transform:scale(.55) rotate(-12deg);opacity:.35}70%{transform:scale(1.12) rotate(5deg)}100%{transform:scale(1);opacity:1}}
 @media(max-width:420px){.rps-arena{gap:5px;padding:15px 7px}.rps-hand{min-height:78px}.rps-player strong{font-size:11px}.rps-choices{gap:6px}.game-area .rps-choice{padding:10px 9px;font-size:12px}}
+
+/* Global sound control */
+.sound-toggle{border:1px solid #514064;background:#1b1728;color:#e9d9ff;border-radius:9px;padding:9px 12px;font:600 12px 'DM Sans';cursor:pointer;white-space:nowrap}
+.sound-toggle:hover{background:#30213f;border-color:var(--purple)}
+@media(max-width:760px){.topbar{gap:10px}.sound-toggle{padding:8px 9px;font-size:11px}.top-cta{font-size:12px;padding:9px 10px}}
+@media(max-width:430px){.topbar{padding:0 4%}.brand{font-size:12px;gap:7px}.brand-mark{width:30px;height:30px}.sound-toggle{font-size:0;padding:8px}.sound-toggle::first-letter{font-size:16px}.top-cta{padding:8px;font-size:11px}}
