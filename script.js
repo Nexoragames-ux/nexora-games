@@ -14,18 +14,76 @@ const grid=document.getElementById('gameGrid'), search=document.getElementById('
 let activeFilter='all';
 const RECORDS_KEY='nexoraPersonalRecordsV1';
 
-/* Nexora sound system: generated locally with Web Audio (no audio downloads needed). */
+/* Nexora sound system: Web Audio, explicitly unlocked by the Sound button. */
 const SOUND_KEY='nexoraSoundEnabled';
-let soundEnabled=localStorage.getItem(SOUND_KEY)!=='false',audioCtx=null,musicTimer=null,musicStep=0;
+let soundEnabled=localStorage.getItem(SOUND_KEY)==='true',audioCtx=null,musicTimer=null,musicStep=0;
 const soundToggle=document.getElementById('soundToggle');
-function getAudio(){const AudioClass=window.AudioContext||window.webkitAudioContext;if(!AudioClass)return null;if(!audioCtx)audioCtx=new AudioClass();if(audioCtx.state==='suspended')audioCtx.resume();return audioCtx;}
-function tone(freq,duration=.16,wave='sine',volume=.075,delay=0){if(!soundEnabled)return;const ctx=getAudio();if(!ctx)return;const play=()=>{const osc=ctx.createOscillator(),gain=ctx.createGain(),start=ctx.currentTime+delay;osc.type=wave;osc.frequency.setValueAtTime(freq,start);gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(volume,start+.02);gain.gain.exponentialRampToValueAtTime(.0001,start+duration);osc.connect(gain);gain.connect(ctx.destination);osc.start(start);osc.stop(start+duration+.04);};if(ctx.state==='suspended')ctx.resume().then(play).catch(()=>{});else play();}
-function playSfx(kind='tap'){if(!soundEnabled)return;if(kind==='win'){tone(523,.16,'sine',.055);tone(659,.18,'sine',.05,.13);tone(784,.24,'sine',.05,.27);}else if(kind==='lose'){tone(220,.22,'triangle',.05);tone(165,.28,'triangle',.04,.16);}else if(kind==='match'){tone(660,.12,'sine',.04);tone(880,.15,'sine',.04,.1);}else{tone(420,.055,'triangle',.018);}}
-function startMusic(){if(!soundEnabled||musicTimer)return;const ctx=getAudio();if(!ctx)return;if(ctx.state==='suspended'){ctx.resume().then(()=>{if(soundEnabled&&!musicTimer)startMusic();}).catch(()=>{});return;}const notes=[196,246.94,293.66,246.94,174.61,220,261.63,220];const playNote=()=>{if(!soundEnabled)return;const c=getAudio();if(!c)return;const osc=c.createOscillator(),gain=c.createGain(),now=c.currentTime;osc.type='triangle';osc.frequency.value=notes[musicStep%notes.length];gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.035,now+.18);gain.gain.exponentialRampToValueAtTime(.0001,now+1.35);osc.connect(gain);gain.connect(c.destination);osc.start(now);osc.stop(now+1.4);musicStep++;};playNote();musicTimer=setInterval(playNote,1500);}
+function getAudio(){
+ const AudioClass=window.AudioContext||window.webkitAudioContext;
+ if(!AudioClass)return null;
+ if(!audioCtx)audioCtx=new AudioClass();
+ return audioCtx;
+}
+function unlockAudio(){
+ const ctx=getAudio();
+ if(!ctx)return Promise.reject(new Error('Web Audio is not supported in this browser.'));
+ return (ctx.state==='suspended'?ctx.resume():Promise.resolve()).then(()=>ctx);
+}
+function tone(freq,duration=.18,wave='sine',volume=.12,delay=0){
+ if(!soundEnabled)return;
+ unlockAudio().then(ctx=>{
+  const osc=ctx.createOscillator(),gain=ctx.createGain(),now=ctx.currentTime+delay;
+  osc.type=wave;osc.frequency.setValueAtTime(freq,now);
+  gain.gain.setValueAtTime(.0001,now);
+  gain.gain.exponentialRampToValueAtTime(volume,now+.025);
+  gain.gain.exponentialRampToValueAtTime(.0001,now+duration);
+  osc.connect(gain);gain.connect(ctx.destination);osc.start(now);osc.stop(now+duration+.05);
+ }).catch(()=>{});
+}
+function playSfx(kind='tap'){
+ if(kind==='win'){tone(523,.2,'sine',.13);tone(659,.22,'sine',.12,.16);tone(784,.3,'sine',.12,.34);}
+ else if(kind==='lose'){tone(220,.25,'triangle',.12);tone(165,.3,'triangle',.1,.2);}
+ else if(kind==='match'){tone(660,.16,'sine',.12);tone(880,.2,'sine',.12,.14);}
+ else{tone(440,.09,'triangle',.07);}
+}
+function startMusic(){
+ if(!soundEnabled||musicTimer)return;
+ unlockAudio().then(ctx=>{
+  if(!soundEnabled||musicTimer)return;
+  const notes=[196,246.94,293.66,246.94,174.61,220,261.63,220];
+  const playNote=()=>{
+   if(!soundEnabled)return;
+   const now=ctx.currentTime,osc=ctx.createOscillator(),gain=ctx.createGain();
+   osc.type='sine';osc.frequency.value=notes[musicStep++%notes.length];
+   gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.045,now+.04);
+   gain.gain.exponentialRampToValueAtTime(.0001,now+.65);
+   osc.connect(gain);gain.connect(ctx.destination);osc.start(now);osc.stop(now+.7);
+  };
+  playNote();musicTimer=setInterval(playNote,850);
+ }).catch(()=>{});
+}
 function stopMusic(){if(musicTimer){clearInterval(musicTimer);musicTimer=null;}}
-function updateSoundButton(){if(!soundToggle)return;soundToggle.textContent=soundEnabled?'🔊 Sound On':'🔇 Sound Off';soundToggle.setAttribute('aria-pressed',String(soundEnabled));soundToggle.setAttribute('aria-label',soundEnabled?'Turn sound off':'Turn sound on');}
-if(soundToggle){updateSoundButton();soundToggle.addEventListener('click',()=>{soundEnabled=!soundEnabled;localStorage.setItem(SOUND_KEY,String(soundEnabled));if(soundEnabled){startMusic();playSfx('match');setTimeout(()=>playSfx('win'),220);}else stopMusic();updateSoundButton();});}
-document.addEventListener('click',e=>{if(e.target.closest('button')&&e.target.closest('button')!==soundToggle)playSfx('tap');if(soundEnabled)startMusic();});
+function updateSoundButton(){
+ if(!soundToggle)return;
+ soundToggle.textContent=soundEnabled?'🔊 Sound On':'🔇 Enable Sound';
+ soundToggle.setAttribute('aria-pressed',String(soundEnabled));
+ soundToggle.setAttribute('aria-label',soundEnabled?'Turn sound off':'Enable game sounds');
+}
+if(soundToggle){
+ updateSoundButton();
+ soundToggle.addEventListener('click',()=>{
+  soundEnabled=!soundEnabled;localStorage.setItem(SOUND_KEY,String(soundEnabled));
+  if(soundEnabled){
+   unlockAudio().then(()=>{playSfx('win');startMusic();}).catch(()=>{soundEnabled=false;localStorage.setItem(SOUND_KEY,'false');updateSoundButton();alert('Your browser is blocking audio. Please open this site in Chrome and allow sound.');});
+  }else stopMusic();
+  updateSoundButton();
+ });
+}
+document.addEventListener('click',e=>{
+ const b=e.target.closest('button');
+ if(b&&b!==soundToggle)playSfx('tap');
+ if(soundEnabled)startMusic();
+});
 document.addEventListener('keydown',()=>{if(soundEnabled)startMusic();},{once:true});
 
 function getRecords(){try{return JSON.parse(localStorage.getItem(RECORDS_KEY)||'{}')}catch(e){return {}}}
