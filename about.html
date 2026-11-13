@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn about Nexora Games, a browser gaming website for quick, accessible puzzle, arcade and strategy mini games.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://nexoragames-ux.github.io/nexora-games/about.html">
+  <meta name="theme-color" content="#100b1d">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nexora Games">
+  <meta property="og:title" content="About Nexora Games">
+  <meta property="og:description" content="Discover the idea behind Nexora Games and our browser-based mini games.">
+  <meta property="og:url" content="https://nexoragames-ux.github.io/nexora-games/about.html">
+  <title>About Us | Nexora Games</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .about-page{min-height:calc(100vh - 160px);padding:70px 9%;background:radial-gradient(ellipse at 50% 10%,#49207838,transparent 55%)}
+    .about-card{width:min(900px,100%);margin:0 auto;padding:clamp(25px,5vw,52px);background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 20px 70px #0005}
+    .about-card h1{font-size:clamp(38px,6vw,58px);letter-spacing:-2px;margin:12px 0 18px}
+    .about-card h2{font-size:22px;margin:30px 0 10px}
+    .about-card p,.about-card li{color:var(--muted);font-size:14px;line-height:1.9}
+    .about-card ul{padding-left:22px}
+    .about-card a{color:#c49aff;text-decoration:underline;text-underline-offset:3px}
+    .about-highlight{margin:25px 0;padding:20px 22px;border:1px solid #63428a;border-radius:12px;background:linear-gradient(110deg,#211630,#151321);color:#e7d7fa;font:600 16px 'Space Grotesk';line-height:1.7}
+    .about-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+  </style>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-80209GRR0V"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-80209GRR0V');
+  </script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">N</span><span>NEXORA<span class="muted"> GAMES</span></span></a>
+  <nav><a href="index.html#games">Games</a><a href="index.html#categories">Categories</a><a href="about.html">About</a><a href="index.html#faq">FAQ</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+  <a class="top-cta" href="index.html#games">Play now <span>↗</span></a>
+</header>
+<main class="about-page">
+  <article class="about-card">
+    <div class="eyebrow">GET TO KNOW US</div>
+    <h1>About <span>Nexora Games</span></h1>
+    <p>Nexora Games is a browser-based gaming website built around a simple idea: a fun game should be easy to find and easy to start. Choose a challenge, press Play and enjoy it right in your browser—without downloading an app.</p>
+    <div class="about-highlight">Quick challenges. Curious minds. Little moments of fun.</div>
+
+    <h2>What you can play</h2>
+    <p>Our game collection brings together different kinds of mini games, including puzzles, arcade challenges and strategy games. You can test your number skills, memory, words and reactions, or enjoy familiar favourites such as Tic Tac Toe and Rock Paper Scissors.</p>
+
+    <h2>Our approach</h2>
+    <ul>
+      <li><strong>Easy to access:</strong> Play directly through a modern web browser.</li>
+      <li><strong>Different challenges:</strong> Explore a mix of quick games and brain teasers.</li>
+      <li><strong>Made for different screens:</strong> The website is designed to be usable on phones and computers.</li>
+      <li><strong>Play at your pace:</strong> Check the “How to Play” guide on a game card before starting.</li>
+    </ul>
+
+    <h2>Your scores and privacy</h2>
+    <p>Some personal game records and preferences are saved in your browser on your device. They are not a shared online leaderboard and may not transfer between devices or browsers. We also use Google Analytics to understand general website usage. For more details, please read our <a href="privacy.html">Privacy Policy</a>.</p>
+
+    <h2>Keep in touch</h2>
+    <p>Suggestions and feedback help us improve the experience. If you have a question or an idea for a game, visit our <a href="contact.html">Contact page</a>.</p>
+    <div class="about-actions">
+      <a class="btn primary" href="index.html#games">Explore games <span>→</span></a>
+      <a class="btn secondary" href="index.html#faq">Read FAQs</a>
+    </div>
+  </article>
+</main>
+<footer><a class="brand" href="index.html"><span class="brand-mark">N</span><span>NEXORA<span class="muted"> GAMES</span></span></a><p>© <span id="year"></span> Nexora Games. Built for the love of play.</p><span class="footer-note"><a href="contact.html">CONTACT</a> · <a href="privacy.html">PRIVACY</a> · <a href="terms.html">TERMS</a></span></footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
