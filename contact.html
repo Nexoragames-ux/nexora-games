@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Nexora Games for questions, feedback, or support.">
+  <title>Contact Us | Nexora Games</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .contact-page{min-height:calc(100vh - 160px);padding:85px 9%;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 35%,#49207838,transparent 55%)}
+    .contact-card{width:min(650px,100%);padding:clamp(28px,6vw,55px);background:var(--panel);border:1px solid var(--line);border-radius:18px;text-align:center;box-shadow:0 20px 70px #0005}
+    .contact-card h1{font-size:clamp(38px,6vw,58px);letter-spacing:-2px;margin:14px 0}
+    .contact-card p{color:var(--muted);line-height:1.8;font-size:14px}
+    .contact-email{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:15px 22px;border:1px solid #7650a7;background:#211a30;border-radius:10px;color:#e5d3ff;font-weight:700;overflow-wrap:anywhere}
+    .contact-email:hover{background:#35224b;border-color:#bd8aff}
+    .back-link{display:inline-block;margin-top:28px;color:#b88aff;font-size:13px}
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">N</span><span>NEXORA<span class="muted"> GAMES</span></span></a>
+  <nav><a href="index.html#games">Games</a><a href="index.html#categories">Categories</a><a href="index.html#about">About</a><a href="contact.html">Contact</a></nav>
+  <a class="top-cta" href="index.html#games">Play now <span>↗</span></a>
+</header>
+<main class="contact-page">
+  <section class="contact-card">
+    <div class="eyebrow">WE'D LOVE TO HEAR FROM YOU</div>
+    <h1>Get in <span>touch.</span></h1>
+    <p>Have a question, suggestion, or feedback about Nexora Games? Send us an email and we'll be happy to hear from you.</p>
+    <a class="contact-email" href="mailto:nexoragames7@gmail.com">✉ nexoragames7@gmail.com</a>
+    <br><a class="back-link" href="index.html">← Back to Nexora Games</a>
+  </section>
+</main>
+<footer><a class="brand" href="index.html"><span class="brand-mark">N</span><span>NEXORA<span class="muted"> GAMES</span></span></a><p>© <span id="year"></span> Nexora Games. Built for the love of play.</p><span class="footer-note">PLAY FAIR. HAVE FUN.</span></footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
