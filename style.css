@@ -6,3 +6,19 @@
 
 /* Mobile-friendly Neon Snake controls */
 .snake-controls{display:flex;flex-direction:column;align-items:center;gap:6px;margin:12px auto}.snake-controls>div{display:flex;gap:6px}.game-area .snake-controls button{width:52px;height:44px;margin:0;padding:8px;font-size:18px;touch-action:manipulation;user-select:none;-webkit-user-select:none}.snake-game canvas{display:block;margin:0 auto;max-width:100%;height:auto;touch-action:none}
+
+/* Personal high-score board */
+.leaderboard-section{padding-top:35px}
+.leaderboard-note{color:var(--muted);font-size:12px;margin:-14px 0 18px}
+.reset-records{background:#211a30;border:1px solid #55406d;color:#e5d3ff;border-radius:8px;padding:10px 14px;cursor:pointer;font:600 12px 'DM Sans'}
+.reset-records:hover{background:#7443a8;color:white}
+.leaderboard-list{max-width:760px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}
+.record-row{display:flex;align-items:center;gap:14px;padding:13px 17px;border-bottom:1px solid var(--line)}
+.record-row:last-child{border-bottom:0}
+.record-rank{width:28px;color:#b88aff;font:700 13px 'Space Grotesk'}
+.record-icon{font-size:22px}
+.record-name{flex:1;font:600 14px 'Space Grotesk'}
+.record-name small{display:block;color:var(--muted);font:11px 'DM Sans';margin-top:3px}
+.record-row>strong{color:var(--green);font:700 17px 'Space Grotesk'}
+.records-empty{padding:28px;text-align:center;color:var(--muted);font-size:13px}
+@media(max-width:560px){.record-row{gap:9px;padding:12px}.record-name{font-size:12px}.record-row>strong{font-size:15px}.reset-records{padding:9px;font-size:11px}}
