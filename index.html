@@ -10,7 +10,7 @@
 <body>
 <header class="topbar">
   <a class="brand" href="#"><span class="brand-mark">N</span><span>NEXORA<span class="muted"> GAMES</span></span></a>
-  <nav><a href="#games">Games</a><a href="#categories">Categories</a><a href="#about">About</a><a href="contact.html">Contact</a></nav>
+  <nav><a href="#games">Games</a><a href="#categories">Categories</a><a href="#leaderboard">Records</a><a href="#about">About</a><a href="contact.html">Contact</a></nav>
   <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
   <a class="top-cta" href="#games">Play now <span>↗</span></a>
 </header>
@@ -47,6 +47,12 @@
     <div class="section-head"><div><div class="eyebrow">THE GAME LIBRARY</div><h2>Find your <span>next game</span></h2></div><div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search games..." aria-label="Search games"></div></div>
     <div class="game-grid" id="gameGrid"></div>
     <p class="empty-state" id="emptyState" hidden>No games found. Try another search.</p>
+  </section>
+
+  <section class="section leaderboard-section" id="leaderboard">
+    <div class="section-head"><div><div class="eyebrow">YOUR PERSONAL RECORDS</div><h2>High score <span>board</span></h2></div><button class="reset-records" id="resetRecords" type="button">Reset records</button></div>
+    <p class="leaderboard-note">Your best results are saved only in this browser on this device.</p>
+    <div id="leaderboardList" class="leaderboard-list" aria-live="polite"></div>
   </section>
 
   <section class="join-banner" id="about">
